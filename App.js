@@ -9,7 +9,14 @@ import {BlogProvider} from './src/context/BlogContext';
 /*
 BLOGPROVIDER:
     appi onkin nyt blogproviderin child.
-    BlogProvider wrappaa kaikki muut screenit */
+    BlogProvider wrappaa kaikki muut screenit 
+    
+    
+    
+
+    
+*/
+
 
 const navigator = createStackNavigator(
   {

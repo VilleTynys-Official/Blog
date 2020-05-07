@@ -1,12 +1,18 @@
-import React from 'react';
+import React ,{ useContext } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import BlogContext from '../context/BlogContext';
+
 
 const IndexScreen = ()=>{
-
+    
+    const value = useContext(BlogContext); //tän avulla voidaan hyödyntää BlogContextin propseja.
 
  return (
-     <Text>Index sivu</Text>
- ) 
+     <View>
+        <Text>Index sivu</Text>
+        <Text>{value}</Text>
+     </View>
+ ) ;
 }
 
 
