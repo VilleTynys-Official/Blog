@@ -5,7 +5,12 @@ const BlogContext = React.createContext();
 
 //saa childrenin sisäänsä ja palauttaa siitä objektin
 export const BlogProvider= ({children}) =>{
-    return<BlogContext.Provider value={5}>
+    const blogPosts =[
+        {title: 'Blog Post #1'},
+        {title: 'Blog Post #2'},
+    ];
+
+    return<BlogContext.Provider value={blogPosts}>
         {children}
     </BlogContext.Provider>
 };
