@@ -12,6 +12,7 @@ const CreateScreen = ({navigation})=>{
     //paikallinen state joka kontrolloi käyttäjän syötteitä
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const {addBlogPost} = useContext(Context);
 
 
     return (
@@ -19,14 +20,16 @@ const CreateScreen = ({navigation})=>{
             <Text  style={styles.label}>Enter Title:</Text>
             <TextInput style={styles.input}
                         value= {title}
-                        onChange= {(text)=>setTitle(text)}>
+                        onChangeText= {text=>setTitle(text)}>
             </TextInput >
             <Text  style={styles.label}>Enter Content:</Text>
             <TextInput  style={styles.input}
                         value= {content}
-                        onChange={(text)=>setContent(text)}>
+                        onChange={text=>setContent(text)}>
             </TextInput>
-            <Button title='Add blog post'></Button>
+            <Button title='Add blog post'
+                    onPress={() => addBlogPost(title, content)}
+                    ></Button>
             <Text></Text>
         </View>
  )
