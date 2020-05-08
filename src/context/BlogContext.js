@@ -12,8 +12,11 @@ export const BlogProvider= ({children}) =>{
 
     //käytetään setteriä ja lisätään uusi blogPost.
     const addBlogPost = () => {
-        setBlogPosts([...blogPosts, { title : `Blog Post #${blogPosts.length+1}` } ]); //add to arrey syntax
-    }
+        setBlogPosts([
+            ...blogPosts, { title : `Blog Post #${blogPosts.length+1}` } 
+        ]); 
+    };
+
     //uusi blogPosts objekti ja callback funktio valuvat alaspäin kaikille childreneille.
     return(
         <BlogContext.Provider

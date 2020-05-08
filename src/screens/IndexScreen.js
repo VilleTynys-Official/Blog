@@ -1,16 +1,22 @@
 import React ,{ useContext } from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Button} from 'react-native';
 import BlogContext from '../context/BlogContext';
 
 
 const IndexScreen = ()=>{ 
-    const blogPosts = useContext(BlogContext); //tän avulla voidaan hyödyntää BlogContextin propseja.
+    const { data, addBlogPost } = useContext(BlogContext); //tän avulla voidaan hyödyntää BlogContextin propseja.
+
+
 
  return (
      <View>
         <Text>Index sivu</Text>
+        <Button
+            title='lisää blogi'
+            onPress={addBlogPost} 
+            />
         <FlatList 
-            data ={blogPosts}
+            data ={data}
             keyExtractor={(blogPost)=> blogPost.title}
             renderItem = {( {item} ) =>{
                 return (
