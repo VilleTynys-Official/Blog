@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
+import React, {useReducer } from 'react';
 
 //tämä on koodin tehtävänä on luoda BlogContext jonka avulla propseja voidaan välittää mihin vain suoraan.
 
 
-//objekti joka vie tietoa childreneille..
 const BlogContext = React.createContext();
+
+
+
+const blogReducer = (state, action)=>{
+    switch (action.type){
+        case 'add_blogpost':
+            return [...state, { title: `Blog Post #${state.length +1}`}];
+        default:
+            return state;
+    }
+
+        
+};
+
+
+
+
 
 //saa kaikki childrenit sisäänsä, lisää siihen objektin blogPosts ja muuten palauttaa childrenin normaalisti.
 export const BlogProvider= ({children}) =>{
-    const [blogPosts, setBlogPosts]= useState([]);
-
-    //käytetään setteriä ja lisätään uusi blogPost.
-    const addBlogPost = () => {
-        setBlogPosts([
-            ...blogPosts, { title : `Blog Post #${blogPosts.length+1}` } 
-        ]); 
+    const [blogPosts, dispatch]= useReducer(blogReducer,[]);
+    
+    const addBlogPost = () =>{
+        dispatch({ type: 'add_blogpost'});
     };
+
+
+    //testataan et lisäys toimii indexscreenissä
+
 
     //uusi blogPosts objekti ja callback funktio valuvat alaspäin kaikille childreneille.
     return(

@@ -17,6 +17,8 @@ DAY 6
       
       Esim. Luodaan State Provideriin ja sieltä Contextin avulla propsit normaaliin tapaan.
 
+    USE REDUCER
+      Otetaan reducer käyttöön ja hallitaan blogipostauksien tilaa sen avulla.
     
 
     
