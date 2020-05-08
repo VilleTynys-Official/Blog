@@ -6,9 +6,6 @@ import { TextInput } from 'react-native-gesture-handler';
 
 
 const CreateScreen = ({navigation})=>{ 
-
-    
-
     //paikallinen state joka kontrolloi käyttäjän syötteitä
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -16,21 +13,24 @@ const CreateScreen = ({navigation})=>{
 
 
     return (
-        <View >
-            <Text  style={styles.label}>Enter Title:</Text>
+        <View>
+            <Text style={styles.label}>Enter Title:</Text>
             <TextInput style={styles.input}
                         value= {title}
-                        onChangeText= {text=>setTitle(text)}>
-            </TextInput >
+                        onChangeText= {text=>setTitle(text)}
+            />
             <Text  style={styles.label}>Enter Content:</Text>
             <TextInput  style={styles.input}
                         value= {content}
                         onChange={text=>setContent(text)}>
             </TextInput>
             <Button title='Add blog post'
-                    onPress={() => addBlogPost(title, content)}
-                    ></Button>
-            <Text></Text>
+                    onPress={() => {
+                        addBlogPost(title, content)
+                        navigation.navigate('Index')
+                    }}
+            />
+            
         </View>
  )
 

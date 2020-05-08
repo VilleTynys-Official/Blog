@@ -29,7 +29,7 @@ const blogReducer = (state, action)=>{
 
 const addBlogPost = (dispatch) =>{
     return (title, content) => {
-        dispatch({ type: 'add_blogpost', payload: {title, content} });
+        dispatch({ type: 'add_blogpost', payload: {title: title, content: content} });
     };
 };
 
@@ -37,7 +37,7 @@ const addBlogPost = (dispatch) =>{
 
 const deleteBlogPost = (dispatch) =>{
     return (id) => {
-        dispatch({ type: 'delete_blogpost', payload: id});           //sisäfunktio ajetaan komponentissa?
+        dispatch({ type: 'delete_blogpost', payload: id});           //sisäfunktio ajetaan komponentissa
     }
 };
 
