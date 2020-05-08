@@ -2,7 +2,7 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import IndexScreen from './src/screens/IndexScreen';
-import {BlogProvider} from './src/context/BlogContext';
+import { Provider} from './src/context/BlogContext';
 
 
 
@@ -17,9 +17,11 @@ DAY 6
       
       Esim. Luodaan State Provideriin ja sieltä Contextin avulla propsit normaaliin tapaan.
 
-    USE REDUCER
-      Otetaan reducer käyttöön ja hallitaan blogipostauksien tilaa sen avulla.
-    
+        USE REDUCER
+          Käyttöönotto:
+              hallitaan blogipostauksien tilaa sen avulla.
+              (helpottaa kun halutaan käyttää monia funktiota staten muuttamiseen.)
+          Bonus funktio contextien hallintaan:
 
     
     
@@ -46,8 +48,9 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator);
 
 export default () =>{
-  return(<BlogProvider>
+  return(
+  <Provider>
       <App/>
-    </BlogProvider> 
+  </Provider> 
   );
 };

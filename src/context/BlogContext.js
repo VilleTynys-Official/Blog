@@ -1,11 +1,6 @@
-import React, {useReducer } from 'react';
-
+import createDataContext from './createDataContext';
 //tämä on koodin tehtävänä on luoda BlogContext jonka avulla propseja voidaan välittää mihin vain suoraan.
-
-
-const BlogContext = React.createContext();
-
-
+//hyödynnetään itse luotua createDataContext funktiota, jonka avulla voidaan luoda uusia contexteja kätevästi.
 
 const blogReducer = (state, action)=>{
     switch (action.type){
@@ -14,33 +9,18 @@ const blogReducer = (state, action)=>{
         default:
             return state;
     }
-
-        
 };
 
-
-
-
-
-//saa kaikki childrenit sisäänsä, lisää siihen objektin blogPosts ja muuten palauttaa childrenin normaalisti.
-export const BlogProvider= ({children}) =>{
-    const [blogPosts, dispatch]= useReducer(blogReducer,[]);
-    
-    const addBlogPost = () =>{
+//dispatch funktio täytyy saada käyttöön.. vähä kikkailua
+const addBlogPost = (dispatch) =>{
+    return () => {
         dispatch({ type: 'add_blogpost'});
-    };
-
-
-    //testataan et lisäys toimii indexscreenissä
-
-
-    //uusi blogPosts objekti ja callback funktio valuvat alaspäin kaikille childreneille.
-    return(
-        <BlogContext.Provider
-            value={{ data: blogPosts, addBlogPost}}>
-        {children}
-    </BlogContext.Provider>
-    );
+    }
 };
 
-export default BlogContext;
+//annetaan createDataContextin hoitaa reducerin luominen.
+export const{ Context, Provider} = createDataContext(
+    blogReducer,
+    { addBlogPost},
+    []
+    );
