@@ -1,15 +1,19 @@
 import React ,{ useContext } from 'react';
 import {View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-native';
 import { Context } from '../context/BlogContext';
-import { Feather } from '@expo/vector-icons';
 
 
-const ShowScreen = ()=>{ 
-    const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+
+const ShowScreen = ({navigation})=>{ 
+    const { state } = useContext(Context);
+
+//etsitään oikea id staten find funktiolla.
+const blogPost = state.find((blogPost) => blogPost.id === navigation.getParam('id'));
 
 
  return (
      <View>
+         <Text>{blogPost.id}</Text>
     </View>
  )
 
@@ -17,21 +21,6 @@ const ShowScreen = ()=>{
 
 
 const styles= StyleSheet.create({
-    row: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 20,
-        paddingHorizontal: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: 'gray'
-    
-    },
-    title: {
-        fontSize: 18
-    },
-    icon:{
-        fontSize:24
-    }
 
 
 });

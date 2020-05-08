@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 const IndexScreen = ({navigation}) =>{ 
     const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
-
+//huom navigoinnissa kerrotaan myös parametrina mille sivulle halutaan navigoida (id)
  return (
      <View>
         <Button
@@ -19,7 +19,7 @@ const IndexScreen = ({navigation}) =>{
             keyExtractor={(blogPost)=> blogPost.title}
             renderItem = {( {item} ) =>{
                 return (
-                    <TouchableOpacity onPress={() =>navigation.navigate('Show')}>
+                    <TouchableOpacity onPress={() =>navigation.navigate('Show', {id: item.id})}>
                         <View style={styles.row}>
                             <Text style={styles.title}>{item.title} - {item.id}</Text>
                                 <TouchableOpacity onPress={()=> deleteBlogPost(item.id)}>
