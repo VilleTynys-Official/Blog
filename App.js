@@ -7,10 +7,18 @@ import {BlogProvider} from './src/context/BlogContext';
 
 
 /*
-BLOGPROVIDER:
+DAY 6
+  BLOG POST PROVIDER:
     appi onkin nyt blogproviderin child.
     BlogProvider wrappaa kaikki muut screenit 
+
+    CONTEXT
+      "Välitetään propseja kätevästi sinne sun tänne".
+      
+      Esim. Luodaan State Provideriin ja sieltä Contextin avulla propsit normaaliin tapaan.
+
     
+
     
     
 

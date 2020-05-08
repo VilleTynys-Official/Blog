@@ -1,4 +1,6 @@
 import React, { Children } from 'react';
+//tämä on koodin tehtävänä on luoda BlogContext jonka avulla propseja voidaan välittää mihin vain suoraan.
+
 
 //objekti joka vie tietoa childreneille..
 const BlogContext = React.createContext();
