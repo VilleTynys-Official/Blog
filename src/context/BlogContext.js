@@ -1,11 +1,14 @@
 import createDataContext from './createDataContext';
-//tämä on koodin tehtävänä on luoda BlogContext jonka avulla propseja voidaan välittää mihin vain suoraan.
+//tämä on koodin tehtävänä on luoda Context jonka avulla propseja voidaan välittää mihin vain suoraan.
 //hyödynnetään itse luotua createDataContext funktiota, jonka avulla voidaan luoda uusia contexteja kätevästi.
 
 const blogReducer = (state, action)=>{
     switch (action.type){
         case 'add_blogpost':
-            return [...state, { title: `Blog Post #${state.length +1}`}];
+            return [
+                ...state, { id: Math.floor(Math.random()*99999),
+                    title: `Blog Post #${state.length +1}`}
+                ];
         default:
             return state;
     }

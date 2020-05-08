@@ -21,7 +21,11 @@ DAY 6
           Käyttöönotto:
               hallitaan blogipostauksien tilaa sen avulla.
               (helpottaa kun halutaan käyttää monia funktiota staten muuttamiseen.)
-          Bonus funktio contextien hallintaan:
+          
+        CREATE CONTEXT FUNKTIO  
+              funktio contextien hallintaan:
+
+
 
     
     
