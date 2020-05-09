@@ -11,6 +11,8 @@ const CreateScreen = ({navigation})=>{
     const [content, setContent] = useState('');
     const {addBlogPost} = useContext(Context);
 
+    console.log(title);
+    console.log(content);
 
     return (
         <View>
@@ -26,8 +28,9 @@ const CreateScreen = ({navigation})=>{
             </TextInput>
             <Button title='Add blog post'
                     onPress={() => {
-                        addBlogPost(title, content)
-                        navigation.navigate('Index')
+                        addBlogPost(title, content, ()=> {navigation.navigate('Index')})
+                        //navigation.navigate('Index')      <-- tämä yksistään on vähän huono vaihto-ehto käyttää suoraan näin.
+                        //Voi olla nimittäin et halutaan että esim. titlet ja content ovat päivittyneet tietokantaan (asyncroninen vaihe)
                     }}
             />
             
