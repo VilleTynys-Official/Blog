@@ -30,14 +30,14 @@ const IndexScreen = ({navigation}) =>{
  );
 }
 
-//navigointi nappulat
+//navigointi nappulat.
 IndexScreen.navigationOptions = ({navigation}) => {
     return{
-        headerRight:( 
+        headerRight:()=>
             <TouchableOpacity onPress={() => navigation.navigate('Create')}>
                 <Feather name="plus" size={30} />
             </TouchableOpacity>
-        )
+        
     };
 };
 
