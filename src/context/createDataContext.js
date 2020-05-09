@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 
-//funktio joka auttaa automatisoimaan contextien luonnin.
+//funktio joka auttaa automatisoimaan contextien luonnin. Vähän sekava, mut kuulemma kätevä.
 
 export default (reducer, actions, initialState) =>{
     const Context = React.createContext();
