@@ -11,7 +11,7 @@ const EditScreen = ({navigation})=>{
     const [content, setContent] = useState('');
     const { addBlogPost } = useContext(Context); //destructured out the function from the whole Context
 
-
+    
 
 
     return (
@@ -26,6 +26,7 @@ const EditScreen = ({navigation})=>{
                     value={content}
                     onChangeText={ text => setContent(text)}
             />
+            <Text>{navigation.getParam('id')}</Text>
         
 
 
