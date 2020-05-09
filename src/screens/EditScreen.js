@@ -3,9 +3,9 @@ import {View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-
 import { Context } from '../context/BlogContext';
 import { TextInput } from 'react-native-gesture-handler';
 
+//Toistaiseksi kopio create screenistä..
 
-
-const CreateScreen = ({navigation})=>{ 
+const EditScreen = ({navigation})=>{ 
     //paikallinen state joka kontrolloi käyttäjän syötteitä
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -16,12 +16,12 @@ const CreateScreen = ({navigation})=>{
 
     return (
         <View>
-            <Text style={styles.label}>Enter Title:</Text>
+            <Text style={styles.label}>Enter new Title:</Text>
             <TextInput style={styles.input}
                         value= {title}
                         onChangeText= { text =>setTitle(text)}
             />
-            <Text  style={styles.label}>Enter Content:</Text>
+            <Text  style={styles.label}>Enter new Content:</Text>
             <TextInput style={styles.input}
                     value={content}
                     onChangeText={ text => setContent(text)}
@@ -64,4 +64,4 @@ const styles= StyleSheet.create({
 
 });
 
-export default CreateScreen;
+export default EditScreen;

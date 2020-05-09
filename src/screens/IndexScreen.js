@@ -30,7 +30,7 @@ const IndexScreen = ({navigation}) =>{
  );
 }
 
-//navigointi nappulat.
+//navigointi nappula.
 IndexScreen.navigationOptions = ({navigation}) => {
     return{
         headerRight:()=>
