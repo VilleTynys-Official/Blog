@@ -1,4 +1,6 @@
 import createDataContext from './createDataContext';
+import jsonServer from '../api/jsonServer';
+
 //tämä on koodin tehtävänä on luoda Context jonka avulla propseja voidaan välittää mihin vain suoraan.
 //hyödynnetään itse luotua createDataContext funktiota, jonka avulla voidaan luoda uusia contexteja kätevästi.
 
@@ -13,6 +15,10 @@ const blogReducer = (state, action)=>{
     switch (action.type){
 
         //mäpätään kaikkien läpi ja palautetaan propertyt
+       case 'get_blogposts':
+            return action.payload;      //apin response siis on koko totuus contextista..
+       
+       
         case 'edit_blogpost':
             return state.map((blogpost) => {    //otetaan sisään kaikki vanhat blogpostit.
                 return blogpost.id ===action.payload.id
@@ -38,6 +44,14 @@ const blogReducer = (state, action)=>{
 };
 
 
+const getBlogPosts = dispatch => {
+    return async () => {
+        const response= await jsonServer.get('/blogposts') //tää katenoidaan jsonserverin baseURL kanssa..
+        /// response.data === [{},{},{}]    array blogposteja..
+
+        dispatch({type: 'get_blogposts', payload: response.data})
+    }
+}
 
 const addBlogPost = dispatch =>{
     return (title, content, callback) => {
@@ -71,6 +85,6 @@ const editBlogPost = dispatch => {
 //annetaan createDataContextin hoitaa reducerin luominen.
 export const{ Context, Provider} = createDataContext(
     blogReducer,
-    { addBlogPost, deleteBlogPost, editBlogPost},
-    [ {title: 'TestiTitteli', content: 'Tämä on testi post. Eli vähän random tekstiä..', id: 12341} ]
+    { addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts},
+    [ ]         //tähän voisi lykätä dummy blogpostin..
     );
