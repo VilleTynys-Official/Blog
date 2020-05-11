@@ -3,30 +3,34 @@ import {View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-
 import { Context } from '../context/BlogContext';
 import { TextInput } from 'react-native-gesture-handler';
 
-//Toistaiseksi kopio create screenistä..
 
 const EditScreen = ({navigation})=>{ 
-    //paikallinen state joka kontrolloi käyttäjän syötteitä
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const { addBlogPost } = useContext(Context); //destructured out the function from the whole Context
 
+    const { state } = useContext(Context); //state destructured out from the whole Context
+
+    //iteroidaan läpi kaikki postit ja palautetaan se mis id täsmää navigation id:hen.
+    const blogPost =state.find(
+        blogPost => blogPost.id === navigation.getParam('id')
+        );
     
+           
+    const [title, setTitle] = useState(blogPost.title);
+    const [content, setContent] = useState(blogPost.content);
 
 
     return (
         <View>
-            <Text style={styles.label}>Enter new Title:</Text>
+            <Text style={styles.label}>Edit Title:</Text>
             <TextInput style={styles.input}
                         value= {title}
-                        onChangeText= { text =>setTitle(text)}
+                        onChangeText= { newTitle =>setTitle(newTitle)}
             />
-            <Text  style={styles.label}>Enter new Content:</Text>
+            <Text  style={styles.label}>Edit Content:</Text>
             <TextInput style={styles.input}
                     value={content}
-                    onChangeText={ text => setContent(text)}
+                    onChangeText={ newContent => setContent(newContent)}
             />
-            <Text>{navigation.getParam('id')}</Text>
+            {/* <Text>{navigation.getParam('id')}</Text> */}
         
 
 
