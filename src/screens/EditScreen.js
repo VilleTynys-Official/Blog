@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
-import {View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet} from 'react-native';
 import { Context } from '../context/BlogContext';
-import { TextInput } from 'react-native-gesture-handler';
+import BlogPostForm from '../components/BlogPostForm';
 
 
 const EditScreen = ({navigation})=>{ 
@@ -12,39 +12,14 @@ const EditScreen = ({navigation})=>{
     const blogPost =state.find(
         blogPost => blogPost.id === navigation.getParam('id')
         );
-    
-           
-    const [title, setTitle] = useState(blogPost.title);
-    const [content, setContent] = useState(blogPost.content);
-
 
     return (
-        <View>
-            <Text style={styles.label}>Edit Title:</Text>
-            <TextInput style={styles.input}
-                        value= {title}
-                        onChangeText= { newTitle =>setTitle(newTitle)}
-            />
-            <Text  style={styles.label}>Edit Content:</Text>
-            <TextInput style={styles.input}
-                    value={content}
-                    onChangeText={ newContent => setContent(newContent)}
-            />
-            {/* <Text>{navigation.getParam('id')}</Text> */}
-        
-
-
-
-            <Button
-                    title='Add blog post'
-                    onPress={() => {
-                        addBlogPost(title, content, ()=> {navigation.navigate('Index')})
-                        //navigation.navigate('Index')      <-- tämä yksistään on vähän huono vaihto-ehto käyttää suoraan näin.
-                        //Voi olla nimittäin et halutaan että esim. titlet ja content ovat päivittyneet tietokantaan (asyncroninen vaihe)
-                    }}
-            />
-            
-        </View>
+        <BlogPostForm
+                initialValues={{title : blogPost.title, content : blogPost.content}}
+                onSubmit={(title, content) => {
+                    console.log(title, content)
+                }}
+        ></BlogPostForm>
  )
 
 };

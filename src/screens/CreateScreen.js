@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
-import {View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
 import { Context } from '../context/BlogContext';
-import { TextInput } from 'react-native-gesture-handler';
-
+import BlogPostForm from '../components/BlogPostForm';
 
 
 const CreateScreen = ({navigation})=>{ 
@@ -12,35 +11,14 @@ const CreateScreen = ({navigation})=>{
     const { addBlogPost } = useContext(Context); //destructured out the function from the whole Context
 
 
+    return(
+        <BlogPostForm
+            onSubmit={(title, content)=>{
+                addBlogPost(title, content, () => navigation.navigate('Index'));
+            }}
+        ></BlogPostForm>
+    )
 
-
-    return (
-        <View>
-            <Text style={styles.label}>Enter Title:</Text>
-            <TextInput style={styles.input}
-                        value= {title}
-                        onChangeText= { text =>setTitle(text)}
-            />
-            <Text  style={styles.label}>Enter Content:</Text>
-            <TextInput style={styles.input}
-                    value={content}
-                    onChangeText={ text => setContent(text)}
-            />
-        
-
-
-
-            <Button
-                    title='Add blog post'
-                    onPress={() => {
-                        addBlogPost(title, content, ()=> {navigation.navigate('Index')})
-                        //navigation.navigate('Index')      <-- tämä yksistään on vähän huono vaihto-ehto käyttää suoraan näin.
-                        //Voi olla nimittäin et halutaan että esim. titlet ja content ovat päivittyneet tietokantaan (asyncroninen vaihe)
-                    }}
-            />
-            
-        </View>
- )
 
 };
 

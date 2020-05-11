@@ -3,11 +3,9 @@ import {View, Text, TextInput, StyleSheet, FlatList, Button, TouchableOpacity} f
 
 
 
-const BlogPostForm = () => { 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-
-
+const BlogPostForm = ({ onSubmit, initialValues }) => { 
+    const [title, setTitle] = useState(initialValues.title);
+    const [content, setContent] = useState(initialValues.content);
 
 
     return (
@@ -25,12 +23,22 @@ const BlogPostForm = () => {
 
             <Button
                     title='Save blog post'
-                    onPress={() => {}}
+                    onPress={() => {onSubmit(title, content)}}
             />
             
         </View>
  );
 
+};
+
+
+//tää antaa default propsit
+
+BlogPostForm.defaultProps ={
+    initialValues: {
+    title: '',
+    content: ''
+    }
 };
 
 
