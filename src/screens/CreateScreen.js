@@ -6,8 +6,6 @@ import BlogPostForm from '../components/BlogPostForm';
 
 const CreateScreen = ({navigation})=>{ 
     //paikallinen state joka kontrolloi käyttäjän syötteitä
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
     const { addBlogPost } = useContext(Context); //destructured out the function from the whole Context
 
 
