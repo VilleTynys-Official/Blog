@@ -11,6 +11,15 @@ import createDataContext from './createDataContext';
 
 const blogReducer = (state, action)=>{
     switch (action.type){
+
+        //mäpätään kaikkien läpi ja palautetaan propertyt
+        case 'edit_blogpost':
+            return state.map((blogpost) => {    //otetaan sisään kaikki vanhat blogpostit.
+                return blogpost.id ===action.payload.id
+                ? action.payload
+                : blogPost;
+            });
+
         case 'delete_blogpost':
             return state.filter ((blogPost) => blogPost.id !== action.payload);
         case 'add_blogpost':
@@ -21,13 +30,7 @@ const blogReducer = (state, action)=>{
                     content: action.payload.content
                     }
                 ];
-       
-        case 'edit_blogpost':
-            return [
-                ...state,
-                { 
-                    }
-                ];
+
 
         default:
             return state;
@@ -57,6 +60,10 @@ const editBlogPost = dispatch => {
         dispatch({ type: 'edit_blogpost', payload: {id, title, content}})
     }
 };
+
+
+
+
 
 //annetaan createDataContextin hoitaa reducerin luominen.
 export const{ Context, Provider} = createDataContext(
