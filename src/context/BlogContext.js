@@ -5,6 +5,7 @@ import createDataContext from './createDataContext';
 //aina kun halutaan lisätä uusi toiminnalisuus contextiin:
 //          1. rakenna funktio dispatchia hyödyntämällä.
 //            2. lisää funktio reduceriin
+//              3. lisää exporttiin jotta kaikki childit saavat sen käyttöön.
 
 
 
@@ -21,6 +22,13 @@ const blogReducer = (state, action)=>{
                     }
                 ];
        
+        case 'edit_blogpost':
+            return [
+                ...state,
+                { 
+                    }
+                ];
+
         default:
             return state;
     }
@@ -28,7 +36,7 @@ const blogReducer = (state, action)=>{
 
 
 
-const addBlogPost = (dispatch) =>{
+const addBlogPost = dispatch =>{
     return (title, content, callback) => {
         dispatch({ type: 'add_blogpost', payload: {title, content} });
         callback();
@@ -37,15 +45,22 @@ const addBlogPost = (dispatch) =>{
 
 
 
-const deleteBlogPost = (dispatch) =>{
+const deleteBlogPost = dispatch =>{
     return (id) => {
         dispatch({ type: 'delete_blogpost', payload: id});           //sisäfunktio ajetaan komponentissa
+    }
+};
+
+
+const editBlogPost = dispatch => {
+    return (id, title, content) => {
+        dispatch({ type: 'edit_blogpost', payload: {id, title, content}})
     }
 };
 
 //annetaan createDataContextin hoitaa reducerin luominen.
 export const{ Context, Provider} = createDataContext(
     blogReducer,
-    { addBlogPost, deleteBlogPost},
+    { addBlogPost, deleteBlogPost, editBlogPost},
     [ {title: 'TestiTitteli', content: 'Tämä on testi post. Eli vähän random tekstiä..', id: 12341} ]
     );
