@@ -7,7 +7,7 @@ import BlogPostForm from '../components/BlogPostForm';
 const EditScreen = ({navigation})=>{ 
     const id = navigation.getParam('id')
     const { state, editBlogPost } = useContext(Context); //destruct stuff from the whole Context
-
+    console.log(navigation)
     //iteroidaan läpi kaikki postit ja palautetaan se mis id täsmää navigation id:hen.
     const blogPost =state.find(
         blogPost => blogPost.id === id
@@ -17,7 +17,7 @@ const EditScreen = ({navigation})=>{
         <BlogPostForm
                 initialValues={{title : blogPost.title, content : blogPost.content}}
                 onSubmit={(title, content) => {
-                    editBlogPost(id, title, content)
+                    editBlogPost(id, title, content, () => navigation.pop())
                 }}
         ></BlogPostForm>
  )
