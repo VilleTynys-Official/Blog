@@ -30,14 +30,6 @@ const blogReducer = (state, action)=>{
 
         case 'delete_blogpost':
             return state.filter ((blogPost) => blogPost.id !== action.payload);
-        case 'add_blogpost':
-            return [
-                ...state,
-                { id: Math.floor(Math.random()*99999),
-                    title: action.payload.title,
-                    content: action.payload.content
-                    }
-                ];
 
 
         default:
@@ -59,10 +51,8 @@ const addBlogPost = dispatch =>{
     return async (title, content, callback) => {
         await jsonServer.post('/blogposts', {title, content});
 
-
-    //     dispatch({ type: 'add_blogpost', payload: {title, content} });
-    //     if(callback){
-    //         callback()};       //jos callback löytyy niin tee se. Jos ei niin älä tee mitään.
+        if(callback){
+            callback()};       //jos callback löytyy niin tee se. Jos ei niin älä tee mitään.
     };
 };
 
