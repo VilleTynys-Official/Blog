@@ -26,6 +26,7 @@ const blogReducer = (state, action)=>{
                 return blogpost.id ===action.payload.id
                 ? action.payload
                 : blogPost;
+            
             });
 
         case 'delete_blogpost':
@@ -61,16 +62,25 @@ const addBlogPost = dispatch =>{
 const  deleteBlogPost = dispatch =>{
     return async (id) => {
         await jsonServer.delete(`/blogposts/${id}`);
+
         dispatch({ type: 'delete_blogpost', payload: id})
-    };           //tehdään poisto client puolella (ei apia)
+    };           //tehdään poisto suoraan client puolella
 };
 
 
 const editBlogPost = dispatch => {
-    return (id, title, content, callback) => {
-        dispatch({ type: 'edit_blogpost', payload: {id, title, content}})
-        if(callback){
-            callback()};       //jos callback löytyy niin tee se. Jos ei niin älä tee mitään.
+    return async (id, title, content, callback) => {
+        await jsonServer.put(`/blogposts/${id}`, {title, content})
+
+        dispatch({
+            type: 'edit_blogpost',
+            payload: {id, title, content}
+        });
+
+        if (callback) {
+            callback();
+            console.log('call back suoritettu')
+        }       //jos callback löytyy niin tee se. Jos ei niin älä tee mitään.
     };
 };
 
