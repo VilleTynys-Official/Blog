@@ -9,9 +9,18 @@ const IndexScreen = ({navigation}) =>{
     const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
 
 
-//varmistetaan et tiedot ladataan apista vain kerran.
+//indexScreenin renderöinti säädöt
 useEffect(() => {
     getBlogPosts();
+
+    const listener = navigation.addListener('didFocus', () =>{       //luodaan listener joka ajetaan aina kun indexScreen focusoituu..
+        getBlogPosts();
+    })
+
+    return () =>{               //tää poistaa listenerin jos sivua ei enää haluta pitää "navigaatiossa".
+        listener.remove();
+    };
+
 }, []); //empty array tells that "run only once"
 
 
