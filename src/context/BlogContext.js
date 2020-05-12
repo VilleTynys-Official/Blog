@@ -14,11 +14,13 @@ import jsonServer from '../api/jsonServer';
 const blogReducer = (state, action)=>{
     switch (action.type){
 
-        //mäpätään kaikkien läpi ja palautetaan propertyt
+
        case 'get_blogposts':
-            return action.payload;      //apin response siis on koko totuus contextista..
+            return action.payload; 
+            //>>>>>oletus on et apin response siis on koko totuus contextista..
+            //>>>ei tarvitse lisäillä mitään stateen tms.
        
-       
+         //mäpätään kaikkien läpi ja palautetaan propertyt      
         case 'edit_blogpost':
             return state.map((blogpost) => {    //otetaan sisään kaikki vanhat blogpostit.
                 return blogpost.id ===action.payload.id
